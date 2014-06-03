@@ -34,7 +34,7 @@ Finally, set up a python virtual environment:
 
 #### Configuration
 
-You can configure various attributes of the containerizer using environment variables. If you wish to modify these, copy `./bin/environment.sh.dist` to `./bin/environment.sh` and change the values.
+You can configure various attributes of the containerizer using environment variables by changing `/etc/default/containerizer`.
 
 ##### Mesos Master
 
@@ -53,7 +53,7 @@ You now need to ensure the slave is configured to use `external` containerizatio
 ```shell
 $ ./bin/mesos-slave.sh --master=127.0.0.1:5050 \
                        --isolation="external" \
-                       --containerizer_path="/path/to/this/repo/bin/docker-containerizer"
+                       --containerizer_path="/usr/local/bin/docker-containerizer"
 ```
 
 With the above slave, any tasks that are sent to the slave *must* contain container information otherwise they will be unable to run. You can configure a default image to allow users to submit tasks without this information, with `--default_container_image`.
