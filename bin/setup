@@ -8,7 +8,11 @@
 #                                              |_|
 
 # At this point we're in the root of the project.
-cd $(dirname "$0")
+
+set -e 
+CONFIG_FILE=/etc/default/containerizer
+
+[ -f "${CONFIG_FILE}" ] && source ${CONFIG_FILE}
 
 function check_deps() {
     missing=
@@ -30,15 +34,15 @@ check_deps python2.7 virtualenv
 export PYTHONPATH=
 
 # Install the requirements
-if [ ! -f "./env/updated" -o ../requirements.pip -nt ./env/updated ]; then
+if [ ! -f "${CONTAINERIZER_VENV_PATH}/updated" -o ${CONTAINERIZER_HOME}/requirements.pip -nt ${CONTAINERIZER_VENV_PATH}/updated ]; then
   virtualenv ./env -p python2.7
-  ./env/bin/pip install -U distribute==0.6.46
-  ./env/bin/pip install -r ../requirements.pip
+  ${CONTAINERIZER_VENV_PATH}/bin/pip install -U distribute==0.6.46
+  ${CONTAINERIZER_VENV_PATH}/bin/pip install -r ${CONTAINERIZER_HOME}/requirements.pip
   if [ $? -ne 0 ]; then
     echo "There was a problem installing requirements. Aborting."
     exit 1
   fi
 
   echo Base requirements installed.
-  touch ./env/updated
+  touch ${CONTAINERIZER_VENV_PATH}/updated
 fi
