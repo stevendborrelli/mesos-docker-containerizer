@@ -6,6 +6,32 @@ This project is an implementation of an External Containerizer for [Apache Mesos
 
 ### Getting Started
 
+
+#### Building The Containerizer
+Ensure the following packages are installed
+
+	apt-get -y install protoc-compiler python-setuptools
+
+Bulid the python egg:
+
+	make
+
+Install the python egg:
+
+	easy_install dist/os_docker_containerizer-*.egg
+
+Finally, set up a python virtual environment:
+
+	/opt/containerizer/bin/setup
+
+#### Files in the python egg
+
+* `/etc/default/containerizer`: Location of environment variables
+* `/opt/containerizer/bin/setup`: sets up the python virtual environment
+* `/opt/containerizer/env`: Python virtualenv
+* `/usr/local/bin/docker-containerizer`: Docker containerizer location
+
+
 #### Configuration
 
 You can configure various attributes of the containerizer using environment variables. If you wish to modify these, copy `./bin/environment.sh.dist` to `./bin/environment.sh` and change the values.
