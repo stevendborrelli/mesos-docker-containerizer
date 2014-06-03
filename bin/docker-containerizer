@@ -8,21 +8,17 @@
 #
 
 set -e
-cd $(dirname $(dirname "$0"))
 
-bin/setup
+CONFIG_FILE=/etc/default/containerizer
 
-# Ensure we're inside the virtual environment
-source bin/env/bin/activate
+#bin/setup
 
 # Source our configuration
-if [ -f ./bin/environment.sh ]; then
-    source ./bin/environment.sh
-else
-    source ./bin/environment.sh.dist
-fi
+[ -f ${CONFIG_FILE} ] && source ${CONFIG_FILE}
 
-export PYTHONPATH="`pwd`:$PYTHONPATH"
+
+[ -f ${CONTAINERIZER_VENV_PATH}/bin/activate ] && source ${CONTAINERIZER_VENV_PATH}/bin/activate
+
 
 # We run as sudo here because to modify cgroup properties, we must be root.
-sudo -E python -m containerizer.__main__ $@
+sudo -E ${CONTAINERIZER_VENV_PATH}/bin/python -m containerizer.__main__ $@
