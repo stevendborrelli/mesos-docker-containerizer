@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+#CONTAINERIZER_HOME: location of scripts and requirements
+export CONTAINERIZER_HOME="/opt/containerizer"
+
+#CONTAINERIZER_VENV_PATH: Location of virtualenv  
+export CONTAINERIZER_VENV_PATH="${CONTAINERIZER_HOME}/env"
+
 # CONTAINERIZER_DOCKER_ARGS: Any extra options to pass to `docker` before the command
 # This is a great place to use the -H host argument.
 export CONTAINERIZER_DOCKER_ARGS=""
