@@ -10,7 +10,7 @@ This project is an implementation of an External Containerizer for [Apache Mesos
 #### Building The Containerizer
 Ensure the following packages are installed
 
-	apt-get -y install protoc-compiler python-setuptools
+	apt-get -y install protobuf-compiler python-setuptools python-protobuf
 
 Bulid the python egg:
 
