@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+#Default container 
+export MESOS_DEFAULT_CONTAINER_IMAGE="libmesos/ubuntu"
+
 #CONTAINERIZER_HOME: location of scripts and requirements
 export CONTAINERIZER_HOME="/opt/containerizer"
 
